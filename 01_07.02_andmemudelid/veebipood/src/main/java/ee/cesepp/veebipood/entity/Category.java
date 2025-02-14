@@ -9,36 +9,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//automaatselt takkib andmebaasi tabel, mis on klassi nimega
-
-//File- sttings- plugins- jpa buddy
+@Entity
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //int
+    private Long id;
     private String name;
-    private double price;
-    private String img; //.jpg
     private boolean active;
-
-    //kui on väikse tähega
-    //long
-    //char
-    //double
-    //boolean
-    //primitiivsed väärtused. ainult väärtuse hoidmisekd
-
-    //kui on suure tähega
-    ///Long
-    //String
-    //Character
-    //Double
-    //Boolean
-    //klassiväärtused
-
 }
