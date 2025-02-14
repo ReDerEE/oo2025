@@ -30,6 +30,9 @@ public class playerController {
 
     @PostMapping("player")
     public List<player> addPlayer(@RequestBody player player){
+        if(player.getAge()==null||player.getName()==null||player.getCountry()==null){
+            throw new RuntimeException("ERR_ALL_FIELDS_MUST_BE_FILLED");
+        }
         playerRepository.save(player);
         return playerRepository.findAll();
     }

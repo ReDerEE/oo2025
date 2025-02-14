@@ -11,16 +11,23 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class player {
+@Entity
+public class points {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String country;
-    private String age;
-    private boolean active;
+    private Long player_id;
+    private Long hundredMeter;
+    private Long longJump;
+    private Long shotPut;
+    private Long highJump;
+    private Long fourHundredMeter;
+    private Long hurdles;
+    private Long discThrow;
+    private Long poleVault;
+    private Long javelinThrow;
+    private Long oneFiveMeter;
+
 }
