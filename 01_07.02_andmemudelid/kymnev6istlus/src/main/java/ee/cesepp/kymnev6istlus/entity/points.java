@@ -1,9 +1,6 @@
 package ee.cesepp.kymnev6istlus.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,20 +11,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class points {
+public class Points {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long player_id;
-    private Long hundredMeter;
-    private Long longJump;
-    private Long shotPut;
-    private Long highJump;
-    private Long fourHundredMeter;
-    private Long hurdles;
-    private Long discThrow;
-    private Long poleVault;
-    private Long javelinThrow;
-    private Long oneFiveMeter;
+    private Double hundredMeter;
+    private Double longJump;
+    private Double shotPut;
+    private Double highJump;
+    private Double fourHundredMeter;
+    private Double hurdles;
+    private Double discThrow;
+    private Double poleVault;
+    private Double javelinThrow;
+    private Double oneFiveMeter;
+    private Double sumPoints;
 
 }

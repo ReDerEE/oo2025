@@ -1,27 +1,23 @@
 package ee.cesepp.kymnev6istlus.controller;
 
-import ee.cesepp.kymnev6istlus.entity.player;
-import ee.cesepp.kymnev6istlus.repository.playerRepository;
-import lombok.ToString;
+import ee.cesepp.kymnev6istlus.entity.Player;
+import ee.cesepp.kymnev6istlus.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
-public class playerController {
+public class PlayerController {
     @Autowired
-    playerRepository playerRepository;
+    PlayerRepository playerRepository;
 
 
     @GetMapping("player")
-    public List<player> getPlayer(){
+    public List<Player> getPlayer(){
         List list = playerRepository.findAll();
         
         System.out.println(list);
@@ -29,7 +25,7 @@ public class playerController {
     }
 
     @PostMapping("player")
-    public List<player> addPlayer(@RequestBody player player){
+    public List<Player> addPlayer(@RequestBody Player player){
         if(player.getAge()==null||player.getName()==null||player.getCountry()==null){
             throw new RuntimeException("ERR_ALL_FIELDS_MUST_BE_FILLED");
         }
