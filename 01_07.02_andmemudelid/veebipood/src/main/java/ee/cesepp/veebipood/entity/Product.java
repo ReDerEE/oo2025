@@ -1,9 +1,6 @@
 package ee.cesepp.veebipood.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +23,19 @@ public class Product {
     private String img; //.jpg
     private boolean active;
 
+    @ManyToOne
+    private Category category;
+
+
+    //Parem pool tähistab kas on List<>
+    //Vasak pool kas saab taaskasutada
+    // @ManyToMany
+    // @ManyToOne
+    // @OneToMany
+    // @OneToOne
+
+    // @OneToOne ---> User <-> Contact
+
     //kui on väikse tähega
     //long
     //char
@@ -34,7 +44,7 @@ public class Product {
     //primitiivsed väärtused. ainult väärtuse hoidmisekd
 
     //kui on suure tähega
-    ///Long
+    //Long
     //String
     //Character
     //Double
