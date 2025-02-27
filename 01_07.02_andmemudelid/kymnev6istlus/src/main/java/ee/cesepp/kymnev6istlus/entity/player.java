@@ -22,6 +22,6 @@ public class Player {
     private String country;
     private String age;
     private boolean active;
-    @OneToOne
+    @ManyToOne
     private Points points;
 }

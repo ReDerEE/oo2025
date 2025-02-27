@@ -15,6 +15,8 @@ public class ExceptionCatcher {
         error.setMessage(e.getMessage());
         error.setTimestamp(new Date());
         error.setStatus(400);
+        System.out.println(e.getMessage());
+        System.out.println(e);
         return ResponseEntity.badRequest().body(error);
     }
 }

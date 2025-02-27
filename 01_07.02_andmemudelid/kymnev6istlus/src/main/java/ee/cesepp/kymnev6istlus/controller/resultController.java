@@ -25,16 +25,16 @@ public class ResultController {
 
     @PostMapping("results")
     public List<Results> addResults(@RequestBody Results results){
-        if (results.getHundredMeter()<0 ||
-                results.getLongJump()<0||
-                results.getShotPut()<0||
-                results.getHighJump()<0||
-                results.getFourHundredMeter()<0||
-                results.getHurdles()<0||
-                results.getDiscThrow()<0||
-                results.getPoleVault()<0||
-                results.getJavelinThrow()<0||
-                results.getOneFiveMeter()<0){
+        if (results.getHundredMeter()!=null && results.getHundredMeter()<0 ||
+                results.getLongJump()!=null && results.getLongJump()<0||
+                results.getShotPut()!=null && results.getShotPut()<0||
+                results.getHighJump()!=null && results.getHighJump()<0||
+                results.getFourHundredMeter()!=null && results.getFourHundredMeter()<0||
+                results.getHurdles()!=null && results.getHurdles()<0||
+                results.getDiscThrow()!=null && results.getDiscThrow()<0||
+                results.getPoleVault()!=null && results.getPoleVault()<0||
+                results.getJavelinThrow()!=null && results.getJavelinThrow()<0||
+                results.getOneFiveMeter()!=null && results.getOneFiveMeter()<0){
             throw new RuntimeException("ERROR_FIELDS_MUST_CONTAIN_0_OR_POSITIVE_NUMBER");
         }
         resultRepository.save(results);
@@ -55,17 +55,74 @@ public class ResultController {
         //https://en.wikipedia.org/wiki/Decathlon
         //under "Points system"
 
-        point.setHundredMeter(25.4347*(Math.pow(18-results.getHundredMeter(), 1.81)));
-        point.setLongJump(0.14354*(Math.pow((results.getLongJump()*100)-220, 1.4))); //TODO gives NaN FIXED
-        point.setShotPut(51.39*(Math.pow(results.getShotPut()-1.5, 1.05)));
-        point.setHighJump(0.8465*(Math.pow((results.getHighJump()*100)-75,1.42))); //TODO gives NaN FIXED
-        point.setFourHundredMeter(1.53775*(Math.pow(82-results.getFourHundredMeter(), 1.81)));
-        point.setHurdles(5.74352*(Math.pow(28.5-results.getHurdles(), 1.92)));
-        point.setDiscThrow(12.91*(Math.pow(results.getDiscThrow()-4, 1.1)));
-        point.setPoleVault(0.2797*(Math.pow((results.getPoleVault()*100)-100, 1.35))); //TODO gives NaN FIXED
-        point.setJavelinThrow(10.14*(Math.pow(results.getJavelinThrow()-7, 1.08)));
-        point.setOneFiveMeter(0.03768*(Math.pow(480-results.getOneFiveMeter(), 1.85)));
+        if(results.getHundredMeter() != null) {
+            point.setHundredMeter(25.4347 * (Math.pow(18 - results.getHundredMeter(), 1.81)));
+        }
+        else {
+            point.setHundredMeter(0.0);
+        }
 
+        if(results.getLongJump() !=null) {
+            point.setLongJump(0.14354 * (Math.pow((results.getLongJump() * 100) - 220, 1.4))); //TODO gives NaN FIXED
+        }
+        else {
+            point.setLongJump(0.0);
+        }
+
+        if(results.getShotPut()!=null) {
+            point.setShotPut(51.39 * (Math.pow(results.getShotPut() - 1.5, 1.05)));
+        }
+        else {
+            point.setShotPut(0.0);
+        }
+
+        if(results.getHighJump()!=null) {
+            point.setHighJump(0.8465 * (Math.pow((results.getHighJump() * 100) - 75, 1.42))); //TODO gives NaN FIXED
+        }
+        else {
+            point.setHighJump(0.0);
+        }
+        if(results.getFourHundredMeter()!=null) {
+            point.setFourHundredMeter(1.53775 * (Math.pow(82 - results.getFourHundredMeter(), 1.81)));
+        }
+        else {
+            point.setFourHundredMeter(0.0);
+        }
+
+        if (results.getHurdles() != null) {
+            point.setHurdles(5.74352 * (Math.pow(28.5 - results.getHurdles(), 1.92)));
+        }
+        else {
+            point.setHurdles(0.0);
+        }
+
+        if(results.getDiscThrow()!=null) {
+            point.setDiscThrow(12.91 * (Math.pow(results.getDiscThrow() - 4, 1.1)));
+        }
+        else {
+            point.setDiscThrow(0.0);
+        }
+
+        if(results.getPoleVault()!=null) {
+            point.setPoleVault(0.2797 * (Math.pow((results.getPoleVault() * 100) - 100, 1.35))); //TODO gives NaN FIXED
+        }
+        else {
+            point.setPoleVault(0.0);
+        }
+
+        if(results.getJavelinThrow()!=null) {
+            point.setJavelinThrow(10.14 * (Math.pow(results.getJavelinThrow() - 7, 1.08)));
+        }
+        else {
+            point.setJavelinThrow(0.0);
+        }
+
+        if(results.getOneFiveMeter()!=null) {
+            point.setOneFiveMeter(0.03768 * (Math.pow(480 - results.getOneFiveMeter(), 1.85)));
+        }
+        else {
+            point.setOneFiveMeter(0.0);
+        }
 
         pointRepository.save(point);
 
