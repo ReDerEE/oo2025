@@ -7,12 +7,14 @@ package ee.cesepp.veebipood.controller;
 import ee.cesepp.veebipood.entity.Person;
 import ee.cesepp.veebipood.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController // annab võimaluse api päringuid vastu võtta
 public class PersonController {
 

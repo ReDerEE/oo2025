@@ -4,13 +4,12 @@ import ee.cesepp.veebipood.entity.Order;
 import ee.cesepp.veebipood.entity.Product;
 import ee.cesepp.veebipood.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class OrderController {
 
@@ -33,6 +32,11 @@ public class OrderController {
         order.setTotalSum(sum);
         orderRepository.save(order);
 
+        return orderRepository.findAll();
+    }
+
+    @GetMapping("orders")
+    public List<Order> getOrder(){
         return orderRepository.findAll();
     }
 }
