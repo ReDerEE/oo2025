@@ -3,8 +3,11 @@ package ee.cesepp.veebipood.controller;
 import ee.cesepp.veebipood.entity.Product;
 import ee.cesepp.veebipood.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -51,7 +54,6 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-
     @GetMapping("products/{id}")
     public Product getProduct(@PathVariable Long id) {
         return productRepository.findById(id).orElseThrow(); //SELECT * FROM         extends JpaRepository<Product>
@@ -86,6 +88,29 @@ public class ProductController {
         }*/
         productRepository.save(product);
         return productRepository.findAll();
+    }
+
+    /*@GetMapping("/category-products")
+        public List<Product > getCategoryProducts(@RequestParam Long categoryId) {
+            List<Product> products = productRepository.findAll();
+            List<Product> filteredProduct = new ArrayList<>();
+
+            for(Product p: products){
+                if(p.getCategory().getId().equals(categoryId)){
+                    filteredProduct.add(p);
+                }
+            }
+        return filteredProduct;
+    }*/
+
+    // localhosr:8080/category-products?categoryId=1&page=0&size=2&sort=name, asc
+    // localhosr:8080/category-products?categoryId=1&page=0&size=2&sort=price, desc
+    @GetMapping("/category-products")
+    public Page<Product > getCategoryProducts(@RequestParam Long categoryId, Pageable pageable) {
+        if(categoryId == -1){
+            return productRepository.findAll(pageable);
+        }
+        return productRepository.findByCategory_Id(categoryId, pageable);
     }
 }
 

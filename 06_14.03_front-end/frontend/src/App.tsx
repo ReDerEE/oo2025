@@ -13,6 +13,9 @@ import Cart from './pages/Cart'
 import Signup from './pages/Signup'
 import Orders from './pages/Orders'
 import Login from './pages/Login'
+import SingleProduct from './pages/SingleProduct'
+import EditProduct from './pages/EditProduct'
+import Map from './pages/Map'
 
 function App() {
   
@@ -35,6 +38,11 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/orders' element={<Orders/>} />
+        
+        <Route path='/product/:productId' element={<SingleProduct/>}/>
+        <Route path='/manage/edit-product/:productId' element={<EditProduct/>}/>
+
+        <Route path='/map' element={<Map/>}/>
         <Route path='/*' element={<div>Page not found</div>} />
       </Routes>
     </>
